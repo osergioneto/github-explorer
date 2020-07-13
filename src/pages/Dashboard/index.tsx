@@ -44,6 +44,11 @@ const Dashboard: React.FC = () => {
       return;
     }
 
+    if (repositories.find((repository) => repository.full_name === newRepo)) {
+      setInputError('Repositório já adicionado');
+      return;
+    }
+
     try {
       const { data: repository } = await api.get(`/repos/${newRepo}`);
 
